@@ -28,6 +28,23 @@ Vue.prototype.$http = axios;
 Vue.config.productionTip = false
 Vue.component('tree-table',TreeTable)
 Vue.use(VueQuillEditor)
+ //定义一个过滤时间格式的过滤器
+ Vue.filter('dateFilter',function(original){
+  //这里的original为管道符的左边的传入的参数
+  var dt = new Date(original);
+
+  var y = dt.getFullYear() //年
+  var m = dt.getMonth()+1 //月
+  var d = dt.getDate() //日
+
+  var h = dt.getHours() //时
+  var f = dt.getMinutes() //分
+  var s = dt.getSeconds() //秒
+
+  //返回日期格式
+  return `${y}-${m}-${d} ${h}:${f}:${s}`
+})
+
 
 new Vue({
   router,
